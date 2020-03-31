@@ -2,11 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "frontendaspname": {"value":"devcgkasp1"},
+        "frontendwebappname1": {"value":"nume_unic"},
         "adminUsername": {
-            "value": "cegeka"
+            "value": "thisistheuser"
         },
         "adminPassword": {
-            "value": "Parolatest123"
-        }
+            "value": "Thisisthepassword10!"
+        },
+        "storageAccountType": {"value":"Standard_LRS"}
     }
 }

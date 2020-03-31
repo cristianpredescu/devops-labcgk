@@ -1,0 +1,38 @@
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "sku": {
+          "Tier": "Standard",
+          "Name": "S1"
+      },
+      "name": "[parameters('frontendaspname')]",
+      "apiVersion": "2016-09-01",
+      "location": "[parameters('location')]",
+      "properties": {
+          "name": "[parameters('frontendaspname')]",
+          "workerSizeId": "0",
+          "reserved": false,
+          "numberOfWorkers": "1",
+          "hostingEnvironment": ""
+      },
+      "dependsOn": [    
+        "[resourceId('Microsoft.Compute/virtualMachines', variables('virtualMachineName'))]"   
+      ]
+  },
+  
+  {
+      "apiVersion": "2016-08-01",
+      "type": "Microsoft.Web/sites",
+      "kind": "app",
+      "name": "[parameters('frontendwebappname1')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('frontendaspname'))]",
+        "httpsOnly": false,
+        "siteConfig": {
+          "AlwaysOn": true
+      }
+      },
+      "dependsOn": [    
+        "[resourceId('Microsoft.Web/serverfarms', parameters('frontendaspname'))]"
+      ]
+  }
